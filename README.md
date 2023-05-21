@@ -53,6 +53,28 @@ Home Netflix on a Raspberry Pi 3 using Jellyfin.
 
 ### Jellyfin
 
+1. Create the config and cache directories in the Raspberry.
+
+   ```shell
+   sudo mkdir -p /srv/jellyfin/{cache,config}
+   ```
+
+1. Run Jellyfin with Docker.
+
+   ```shell
+   docker run -d --name jellyfin \
+   --volume /srv/jellyfin/config:/config \
+   --volume /srv/jellyfin/cache:/cache \
+   --volume /data/media:/data/media \
+   -p 8096:8096 -p 8920:8920 -p 7359:7359/udp -p 1900:1900/udp \
+   --restart=unless-stopped \
+   jellyfin/jellyfin
+   ```
+
+1. Add the libraries.
+   1. _Movies_ -> `/media/movies`
+   1. _Shows_ -> `/media/tv`
+
 ### Sonarr
 
 ### Radarr
