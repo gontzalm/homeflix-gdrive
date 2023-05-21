@@ -33,11 +33,12 @@ Home Netflix on a Raspberry Pi 3 using Jellyfin.
    docker run --rm -it -v ~/.config/rclone:/config/rclone rclone/rclone:latest config
    ```
 
-1. Follow the official Rclone
+   Note: Follow the official Rclone
    [guide](https://rclone.org/drive/#making-your-own-client-id) to create your
-   own client ID.
+   own client ID and use the Google Drive `media` folder as the
+   [root folder](https://rclone.org/drive/#making-your-own-client-id).
 
-1. Mount Google Drive on `/data/media` in the Raspberry using Docker..
+1. Mount Google Drive on `/data/media` in the Raspberry using Docker.
 
    ```shell
    docker run --rm \
