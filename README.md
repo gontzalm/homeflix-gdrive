@@ -1,20 +1,20 @@
-# home-netflix
+# homeflix
 
-Home Netflix on a Raspberry Pi 3 using Jellyfin.
+
 
 ## Checklist
 
-- [ ] First POC with Jellyfin + rclone-mounted Google Drive
+- [x] First POC with Jellyfin + rclone-mounted Google Drive
 - [ ] Set up Sonarr, Radarr, Prowlarr and qBittorrent
 - [ ] Configure rclone to delete files after sync
 - [ ] Try Jellyseer
+- [ ] Use `docker-compose`
 
 ## Prerequisites
 
-1. Create the folder structure specified in TRaSH guide:
+1. Create the folder structure specified in the [TRaSH guide](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/):
 
    ```shell
-   sudo mkdir /data
    sudo mkdir -p /data/torrents/{movies,tv}
    sudo mkdir -p /data/media/{movies,tv}
    sudo chown -R $USER:$USER /data
