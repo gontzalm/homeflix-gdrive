@@ -1,0 +1,71 @@
+services:
+  # jellyseer:
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /srv/radarr/config:/config
+      - media:/data/media
+      - torrents:/data/torrents
+    ports:
+      - "7878:7878"
+    restart: unless-stopped
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /srv/sonarr/config:/config
+      - /media:/data/media
+      - torrents:/data/torrents
+    ports:
+      - "8989:8989"
+    restart: unless-stopped
+  prowlarr:
+    image: linuxserver/prowlarr
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /srv/prowlarr/config:/config
+    ports:
+      - "8989:8989"
+    restart: unless-stopped
+  # qbittorrent:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: radarr
+    volumes:
+      - /srv/jellyfin/cache:/cache
+      - /srv/jellyfin/config:/config
+      - media:/data/media
+    ports:
+      - "8096:8096"
+      - "8092:8092"
+      - "7359:7359/udp"
+      - "1900:1900/udp"
+    restart: unless-stopped
+
+volumes:
+  media:
+    driver: rclone
+    driver_opts:
+      remote: "gdrive:"
+      allow_other: "true"
+      allow_non_empty: "true"
+      vfs_cache_mode: full
+      buffer_size: 256M
+  torrents:
+    driver: local
+    driver_opts:
+      device: /data/torrents
+      o: bind

@@ -1,7 +1,5 @@
 # homeflix
 
-
-
 ## Checklist
 
 - [x] First POC with Jellyfin + rclone-mounted Google Drive
@@ -12,7 +10,8 @@
 
 ## Prerequisites
 
-1. Create the folder structure specified in the [TRaSH guide](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/):
+1. Create the folder structure specified in the
+   [TRaSH guide](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/):
 
    ```shell
    sudo mkdir -p /data/torrents/{movies,tv}
@@ -27,17 +26,6 @@
 
 ### Rclone
 
-1. Create the config file and set up the Google Drive `gdrive` remote.
-
-   ```shell
-   docker run --rm -it -v ~/.config/rclone:/config/rclone rclone/rclone:latest config
-   ```
-
-   Note: Follow the official Rclone
-   [guide](https://rclone.org/drive/#making-your-own-client-id) to create your
-   own client ID and use the Google Drive `media` folder as the
-   [root folder](https://rclone.org/drive/#making-your-own-client-id).
-
 1. Mount Google Drive on `/data/media` in the Raspberry using Docker.
 
    ```shell
@@ -50,6 +38,32 @@
      --allow-other --allow-non-empty --buffer-size 256M \
      gdrive: /mnt/gdrive &
    ```
+
+1. Create the directories required by the Rclone Docker plugin.
+
+   ```shell
+   sudo mkdir -p /var/lib/docker-plugins/rclone/{config,cache}
+   ```
+
+1. Install the Rclone Docker plugin.
+
+   ```shell
+   docker plugin install rclone/docker-volume-rclone:arm-v7 \
+     --grant-all-permissions --alias rclone
+   ```
+
+1. Create the config file and set up the Google Drive `gdrive` remote.
+
+   ```shell
+   docker run --rm -it \
+     -v /var/lib/docker-plugins/rclone/config:/config/rclone \
+     rclone/rclone:latest config
+   ```
+
+   Note: Follow the official Rclone
+   [guide](https://rclone.org/drive/#making-your-own-client-id) to create your
+   own client ID and use the Google Drive `media` folder as the
+   [root folder](https://rclone.org/drive/#making-your-own-client-id).
 
 ### Jellyfin
 
