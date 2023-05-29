@@ -95,5 +95,6 @@ volumes:
   torrents:
     driver: local
     driver_opts:
+      type: ext4
       device: /data/torrents
       o: bind
