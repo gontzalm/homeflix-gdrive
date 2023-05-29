@@ -22,22 +22,9 @@
 
 1. Create the `media` folder in Google Drive.
 
-## Programs
+## Setup
 
 ### Rclone
-
-1. Mount Google Drive on `/data/media` in the Raspberry using Docker.
-
-   ```shell
-   docker run --rm \
-     --volume ~/.config/rclone:/config/rclone \
-     --volume /data/media:/mnt/gdrive:shared \
-     --cap-add SYS_ADMIN --security-opt apparmor:unconfined \
-     --device /dev/fuse \
-     rclone/rclone mount \
-     --allow-other --allow-non-empty --buffer-size 256M \
-     gdrive: /mnt/gdrive &
-   ```
 
 1. Create the directories required by the Rclone Docker plugin.
 
@@ -65,34 +52,52 @@
    own client ID and use the Google Drive `media` folder as the
    [root folder](https://rclone.org/drive/#making-your-own-client-id).
 
+### Sonarr
+
+1. Create the config directory.
+   ```shell
+   sudo mkdir -p /srv/sonarr/config
+   ```
+
+### Radarr
+
+1. Create the config directory.
+   ```shell
+   sudo mkdir -p /srv/radarr/config
+   ```
+
+### Prowlarr
+
+1. Create the config directory.
+   ```shell
+   sudo mkdir -p /srv/prowlarr/config
+   ```
+
+### qBittorrent
+
+1. Create the config directory.
+
+   ```shell
+   sudo mkdir -p /srv/qbittorrent/config
+
+   ```
+
+### Bazarr
+
+1. Create the config directory.
+
+   ```shell
+   sudo mkdir -p /srv/bazarr/config
+   ```
+
 ### Jellyfin
 
-1. Create the config and cache directories in the Raspberry.
+1. Create the config and cache directories.
 
    ```shell
    sudo mkdir -p /srv/jellyfin/{cache,config}
    ```
 
-1. Run Jellyfin with Docker.
-
-   ```shell
-   docker run -d --name jellyfin \
-   --volume /srv/jellyfin/config:/config \
-   --volume /srv/jellyfin/cache:/cache \
-   --volume /data/media:/data/media \
-   -p 8096:8096 -p 8920:8920 -p 7359:7359/udp -p 1900:1900/udp \
-   --restart=unless-stopped \
-   jellyfin/jellyfin
-   ```
-
-1. Add the libraries.
+1. Access the web client and add the libraries.
    1. _Movies_ -> `/media/movies`
    1. _Shows_ -> `/media/tv`
-
-### Sonarr
-
-### Radarr
-
-### Prowlarr
-
-### qBittorrent

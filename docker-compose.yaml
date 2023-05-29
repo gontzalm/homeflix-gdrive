@@ -15,7 +15,7 @@ services:
       - "7878:7878"
     restart: unless-stopped
   sonarr:
-    image: linuxserver/sonarr
+    image: linuxserver/sonarr:arm32v7-latest
     container_name: sonarr
     environment:
       - PUID=1000
@@ -23,7 +23,7 @@ services:
       - TZ=Europe/Madrid
     volumes:
       - /srv/sonarr/config:/config
-      - /media:/data/media
+      - media:/data/media
       - torrents:/data/torrents
     ports:
       - "8989:8989"
@@ -40,7 +40,35 @@ services:
     ports:
       - "8989:8989"
     restart: unless-stopped
-  # qbittorrent:
+  qbittorrent:
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - WEBUI_PORT=8080
+    volumes:
+      - /srv/qbittorrent/config:/config
+      - torrents:/data/torrents
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /srv/bazarr/config:/config
+      - media:/data/media
+    ports:
+      - "6767:6767"
+    restart: unless-stopped
   jellyfin:
     image: jellyfin/jellyfin
     container_name: radarr
