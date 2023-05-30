@@ -38,7 +38,7 @@ services:
     volumes:
       - /srv/prowlarr/config:/config
     ports:
-      - "8989:8989"
+      - "9696:9696"
     restart: unless-stopped
   qbittorrent:
     image: linuxserver/qbittorrent
