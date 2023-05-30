@@ -50,6 +50,7 @@ services:
       - WEBUI_PORT=8080
     volumes:
       - /srv/qbittorrent/config:/config
+      - /srv/qbittorrent/nightwalker:/nightwalker:ro
       - torrents:/data/torrents
     ports:
       - 8080:8080
