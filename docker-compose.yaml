@@ -91,7 +91,6 @@ volumes:
       allow_other: "true"
       allow_non_empty: "true"
       vfs_cache_mode: full
-      buffer_size: 256M
   torrents:
     driver: local
     driver_opts:

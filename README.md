@@ -69,6 +69,7 @@
 ### Prowlarr
 
 1. Create the config directory.
+
    ```shell
    sudo mkdir -p /srv/prowlarr/config
    ```
