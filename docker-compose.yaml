@@ -8,7 +8,7 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - /srv/radarr/config:/config
+      - ${HOME}/media-server/radarr/config:/config
       - media:/data/media
       - torrents:/data/torrents
     ports:
@@ -22,7 +22,7 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - /srv/sonarr/config:/config
+      - ${HOME}/media-server/sonarr/config:/config
       - media:/data/media
       - torrents:/data/torrents
     ports:
@@ -36,7 +36,7 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - /srv/prowlarr/config:/config
+      - ${HOME}/media-server/prowlarr/config:/config
     ports:
       - "9696:9696"
     restart: unless-stopped
@@ -49,7 +49,7 @@ services:
       - TZ=Europe/Madrid
       - WEBUI_PORT=8080
     volumes:
-      - /srv/qbittorrent/config:/config
+      - ${HOME}/media-server/qbittorrent/config:/config
       - torrents:/data/torrents
     ports:
       - 8080:8080
@@ -64,7 +64,7 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - /srv/bazarr/config:/config
+      - ${HOME}/media-server/bazarr/config:/config
       - media:/data/media
     ports:
       - "6767:6767"
@@ -73,8 +73,8 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     volumes:
-      - /srv/jellyfin/cache:/cache
-      - /srv/jellyfin/config:/config
+      - ${HOME}/media-server/jellyfin/cache:/cache
+      - ${HOME}/media-server/jellyfin/config:/config
       - media:/data/media
     ports:
       - "8096:8096"
