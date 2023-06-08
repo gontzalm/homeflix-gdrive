@@ -8,7 +8,7 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - ${HOME}/media-server/radarr/config:/config
+      - ${HOME}/homeflix/radarr/config:/config
       - media:/data/media
       - torrents:/data/torrents
     ports:
@@ -22,7 +22,7 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - ${HOME}/media-server/sonarr/config:/config
+      - ${HOME}/homeflix/sonarr/config:/config
       - media:/data/media
       - torrents:/data/torrents
     ports:
@@ -36,7 +36,7 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - ${HOME}/media-server/prowlarr/config:/config
+      - ${HOME}/homeflix/prowlarr/config:/config
     ports:
       - "9696:9696"
     restart: unless-stopped
@@ -49,7 +49,7 @@ services:
       - TZ=Europe/Madrid
       - WEBUI_PORT=8080
     volumes:
-      - ${HOME}/media-server/qbittorrent/config:/config
+      - ${HOME}/homeflix/qbittorrent/config:/config
       - torrents:/data/torrents
     ports:
       - 8080:8080
@@ -64,7 +64,7 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - ${HOME}/media-server/bazarr/config:/config
+      - ${HOME}/homeflix/bazarr/config:/config
       - media:/data/media
     ports:
       - "6767:6767"
@@ -73,8 +73,8 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     volumes:
-      - ${HOME}/media-server/jellyfin/cache:/cache
-      - ${HOME}/media-server/jellyfin/config:/config
+      - ${HOME}/homeflix/jellyfin/cache:/cache
+      - ${HOME}/homeflix/jellyfin/config:/config
       - media:/data/media
     ports:
       - "8096:8096"
