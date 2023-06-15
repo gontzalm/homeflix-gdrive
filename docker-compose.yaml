@@ -95,5 +95,5 @@ volumes:
     driver: local
     driver_opts:
       type: ext4
-      device: /data/torrents
+      device: ${HOME}/homeflix/data/torrents
       o: bind
