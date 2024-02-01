@@ -1,14 +1,22 @@
-# homeflix
+# homeflix-gdrive
 
-## Checklist
+> Archived: Due to Google Drive storage limitations, I no longer use this
+> architecture to host my home Netflix. I now use an HDD bay and the
+> configuration is in the [homeflix](https://github.com/gontzalm/homeflix)
+> repository.
 
-- [x] First POC with Jellyfin + rclone-mounted Google Drive
-- [ ] Set up Sonarr, Radarr, Prowlarr and qBittorrent
-- [ ] Configure rclone to delete files after sync
-- [ ] Try Jellyseer
-- [ ] Use `docker-compose`
+## Hardware
+
+- Raspberry Pi 4B 8GB
+- 1TB NVMe SSD
 
 ## Prerequisites
+
+1. Install Arch Linux ARM (`aarch64`) on the SSD following the guides
+
+   - [Raspberry Pi 4 - Arch Linux ARM](https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4)
+   - [Arch Linux ARM USB Boot on Raspberry Pi 4](https://gist.github.com/yogaxpto/9495fb9f76a6321aa483e0f73d4ffaf2)
+   - This [comment](https://gist.github.com/yogaxpto/9495fb9f76a6321aa483e0f73d4ffaf2?permalink_comment_id=4206041#gistcomment-4206041) on the previous gist
 
 1. Create the folder structure specified in the
    [TRaSH guide](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/):
